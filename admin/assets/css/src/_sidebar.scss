@@ -1,0 +1,71 @@
+/* 
+ * Author Slash Web Design
+ */
+
+@import 'colors';
+
+.sidebar {
+	background-color: $bgDark;
+	overflow-x: hidden;
+	overflow-y: auto;
+	transition: width 0.2s;
+
+	h1 {
+		color: #ffffff;
+		font-size: 1.5em;
+		font-weight: 300;
+		margin: 0px;
+		padding: 10px 20px;
+		
+		span {
+			color: #313131;
+			font-size: 1.5em;
+			margin-right: 10px;
+		}
+	}
+	ul {
+		margin: 0px;
+		padding: 0px;
+		list-style: none;
+		background-color: #f9f9f9;
+
+		li {
+			display: block;
+			line-height: 60px;
+			color: #a0a0a0;
+			cursor: pointer;
+
+			.ico {
+				font-size: 1.8em;
+				vertical-align: middle;
+				margin: 0px 30px;
+			}
+
+			ul.sub {
+				li {
+					padding-left: 30px;
+				}
+			}
+		}
+		li[data-state="closed"] {
+			ul.sub {
+				display: none;
+			}
+		}
+		li[data-state="open"] {
+			ul.sub {
+				display: block;
+			}
+		}
+		li:hover {
+			background-color: $bgDark;
+		}
+		li[data-state="open"]:hover {
+			background-color: #3b3b53;
+		}
+		li.divider {
+			height: 1px;
+			background-color: rgba(0, 0, 0, 0.2);
+		}
+	}
+}

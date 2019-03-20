@@ -71,6 +71,24 @@ class API
 		));
 	}
 	
+	public function get()
+	{
+		if (!$this->input->has(array('endpoint', 'fields', 'filter')))
+		{
+			$this->respond(array('status' => false, 'error' => '[1002] Input paramters not defined'));
+		}
+		
+		if (!isset($this->input->order)) $this->input->order = $this->input->endpoint . '_id ASC';
+		if (!isset($this->input->limit)) $this->input->limit = 100;
+		
+		$res = $this->db->run("SELECT {$this->input->fields} FROM {$this->input->endpoint} WHERE {$this->input->filter} ORDER BY {$this->input->order} LIMIT {$this->input->limit}");
+
+		$this->respond(array(
+			'status'	=>	true,
+			'data'		=>	$res
+		));
+	}
+	
 	public function delete()
 	{
 		if (!$this->input->has(array('endpoint', 'id')))
